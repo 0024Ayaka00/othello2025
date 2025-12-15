@@ -1,54 +1,40 @@
+# Generation ID: Hutch_1763363240578_47ziaom5e (前半)
+
 def mya1(board, color):
     """
-    改善版：ひっくり返し数＋位置評価で最良手を返すオセロAI
+    オセロで最も多くの石が取れる位置を返す関数
     """
     size = len(board)
     opponent = 3 - color
+    max_count = -1
+    best_move = None
 
-    pos_weight = [
-        [1000, -500, 10, 10, 10, 10, -500, 1000],
-        [-500, -200,  1,  1,  1,  1, -200, -500],
-        [  10,    1,  5,  5,  5,  5,    1,   10],
-        [  10,    1,  5,  1,  1,  5,    1,   10],
-        [  10,    1,  5,  1,  1,  5,    1,   10],
-        [  10,    1,  5,  5,  5,  5,    1,   10],
-        [-500, -200,  1,  1,  1,  1, -200, -500],
-        [1000, -500, 10, 10, 10, 10, -500, 1000]
-    ]
-
-      directions = [
-        (-1, -1), (-1, 0), (-1, 1),
-        (0, -1),          (0, 1),
-        (1, -1),  (1, 0), (1, 1)
-    ]
-
-     best_score = -10**9
-     best_move = None
+    directions = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
 
     for row in range(size):
         for col in range(size):
             if board[row][col] != 0:
                 continue
 
-            total_flip = 0
+            flip_count = 0
 
             for dr, dc in directions:
+                temp_count = 0
                 r, c = row + dr, col + dc
-                temp = 0
+
                 while 0 <= r < size and 0 <= c < size and board[r][c] == opponent:
-                    temp += 1
+                    temp_count += 1
                     r += dr
                     c += dc
 
-                 if 0 <= r < size and 0 <= c < size and board[r][c] == color and temp > 0:
-                    total_flip += temp
+                if 0 <= r < size and 0 <= c < size and board[r][c] == color and temp_count > 0:
+                    flip_count += temp_count
 
-                      if total_flip == 0:
-                      　continue  # 非合法手
+            if flip_count > max_count:
+                max_count = flip_count
+                best_move = (col, row)
 
-                       score = total_flip * 5 + pos_weight[row][col]
+    return best_move
 
-                         if score > best_score:
-                          best_score = score
-                           best_move = (row, col)
-  return best_move
+# Generation ID: Hutch_1763363240578_47ziaom5e (後半)
+othello.play(mya1)
