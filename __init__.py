@@ -22,7 +22,7 @@ POSITION_WEIGHTS = [
     [100, -20, 10, 5, 5, 10, -20, 100]
 ]
 
-def mya1(board, color):
+def myai(board, color):
     """
     オセロで最も多くの石が取れる位置を返す関数
     - アルゴリズム戦略として位置価値による評価関数を導入
@@ -87,4 +87,4 @@ def mya1(board, color):
     return best_move
 
 # Generation ID: Hutch_1763363240578_47ziaom5e (後半)
-othello.play(mya1)
+othello.play(myai)
