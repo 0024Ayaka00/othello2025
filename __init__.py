@@ -1,3 +1,7 @@
+from sakura import othello
+othello.play()
+
+
 # 定義: オセロの石の色
 EMPTY = 0
 BLACK = 1
