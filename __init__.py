@@ -1,5 +1,4 @@
-from sakura import othello
-othello.play()
+
 
 
 # 定義: オセロの石の色
