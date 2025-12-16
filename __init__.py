@@ -86,4 +86,4 @@ def myai(board, color):
     return best_move
 
 # Generation ID: Hutch_1763363240578_47ziaom5e (後半)
-othello.play(myai)
+# othello.play(myai)
